@@ -1,0 +1,41 @@
+/* 1. サイト全体のベース設定（Null²の世界観） */
+body {
+  background-color: #111111; /* 真っ黒（#000）より少し浮かせたダークグレー */
+  color: #ffffff;            /* 文字は白 */
+  font-family: 'Helvetica Neue', Arial, "Hiragino Mincho ProN", "Yu Mincho", serif; /* 明朝体を含めると落合陽一氏風の雰囲気が出ます */
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. ヘッダーのレイアウト（上部固定・横並び） */
+.l-header {
+  display: flex;
+  justify-content: space-between; /* ロゴを左、メニューを右に分ける */
+  align-items: center;
+  padding: 20px 40px;
+  position: fixed; /* スクロールしても一番上に固定される */
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgba(17, 17, 17, 0.9); /* 少し透けさせて背景を馴染ませる */
+  z-index: 100; /* ヘッダーが他の要素より常に手前に来るようにする */
+}
+
+/* 3. コンテンツの中央揃えと幅制限 */
+.l-container {
+  max-width: 1000px;     /* 横幅がこれ以上広がらないようにする */
+  margin: 120px auto 0;  /* 上にヘッダー分の余白を開け、左右は中央揃え */
+  padding: 0 20px;
+}
+
+/* 4. 共通のセクション・見出しデザイン */
+.c-section {
+  margin-bottom: 80px; /* セクション間の余白を広く取るとモダンになります */
+}
+
+.c-section-title {
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 0.1em; /* 文字の間隔を少し開ける */
+  margin-bottom: 40px;
+}
