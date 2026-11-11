@@ -1,8 +1,12 @@
+
+
+/*cssファイルはこれだけです！　ここからレイアウトを選択して！！！*/
+
 /* 1. サイト全体のベース設定（Null²の世界観） */
 body {
   background-color: #111111; /* 真っ黒（#000）より少し浮かせたダークグレー */
   color: #ffffff;            /* 文字は白 */
-  font-family: 'Helvetica Neue', Arial, "Hiragino Mincho ProN", "Yu Mincho", serif; /* 明朝体を含めると落合陽一氏風の雰囲気が出ます */
+  font-family: "Zen old mincho", sans-serif;
   margin: 0;
   padding: 0;
 }
