@@ -39,3 +39,62 @@ body {
   letter-spacing: 0.1em; /* 文字の間隔を少し開ける */
   margin-bottom: 40px;
 }
+/* トップページのタイトル周り */
+.c-hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.hero-title {
+  font-size: 32px;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+.hero-text {
+  line-height: 1.8;
+  color: #cccccc; /* 真っ白より少し暗くして落ち着かせる */
+}
+
+/* リンクボタンを並べるレイアウト（グリッドで2列にする） */
+.c-nav-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* PCでは2列に並べる */
+  gap: 20px; /* ボタン同士の隙間 */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* スタイリッシュなボタンのデザイン */
+.nav-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  border: 1px solid #ffffff; /* 白い枠線 */
+  color: #ffffff;
+  text-decoration: none; /* リンクの下線を消す */
+  transition: all 0.3s ease; /* ふわっと変化させる */
+}
+
+.nav-en {
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+}
+
+.nav-ja {
+  font-size: 18px;
+}
+
+/* マウスを乗せたとき（ホバー時）の動き */
+.nav-button:hover {
+  background-color: #ffffff; /* 背景を白に */
+  color: #000000;            /* 文字を黒に反転 */
+}
+
+/* スマホ閲覧時は1列にする */
+@media (max-width: 600px) {
+  .c-nav-links {
+    grid-template-columns: 1fr;
+  }
+}
