@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">　<!--スマホ対応-->
   <title>Group D ディープフェイク</title>
   <link rel="stylesheet" href="base.css">
+  <style>
+    /* bodyへの指定はページ全体に影響するため外すか調整します */
+    .scramble-text {
+      font-family: 'Courier New', Consolas, monospace;
+      font-size: 2.5rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      color: #ffffff; /* 必要に応じて指定 */
+    }
+  </style>
 </head>
 <body class="body">
 
@@ -15,11 +25,27 @@
 
   <!-- トップページ専用のメインコンテンツ -->
   <main class="l-container">
-    
+    <div class="container w-container">
+      ::before
+      <section class="sec-container sec-introduction">
+        <div class="intro-first-view">
+          <p class="produce-title">メディアプロジェクト演習</p>
+          <p class="produce-subtitle">グループD</p>
+        </div>
+
+      </section>
+      <p class="produce-title">
+        高草 千暁 / 大井 研伸 / 高御堂 彩音 / 髙橋 謙介
+      </p>
+
+    </div>
     <!-- トップのタイトルと概要 -->
-    <section class="c-hero">
-      <h1 class="hero-title">テーマの全体タイトル</h1>
-      <p class="hero-text">ここにウェブページ全体の概要や、目次としての案内文（「概要/目次担当」が作成する文章）を記載します。</p>
+    <section class="c-top">
+      <h1 class="logo-large">
+        <div class="scramble-text" data-text="DEEP FAKE">DEEP FAKE</div>
+      </h1>
+      <h1 class="top-title">テーマの全体タイトル</h1>
+      <p class="top-text">ここにウェブページ全体の概要や、目次としての案内文（「概要/目次担当」が作成する文章）を記載します。</p>
     </section>
 
     <!-- 各ページへのリンクボタン群 -->
@@ -28,21 +54,30 @@
       <a href="history.html" class="nav-button">
         <span class="nav-en">HISTORY</span>
         <span class="nav-ja">歴史について</span>
+        ::after
       </a>
       
       <a href="measures.html" class="nav-button">
         <span class="nav-en">MEASURES</span>
         <span class="nav-ja">対策について</span>
+        ::after
       </a>
 
       <a href="deeplearning.html" class="nav-button">
         <span class="nav-en">DEEP LEARNING</span>
         <span class="nav-ja">深層学習について</span>
+        ::after
       </a>
 
       <a href="media.html" class="nav-button">
         <span class="nav-en">MEDIA TECH</span>
         <span class="nav-ja">画像音声技術について</span>
+        ::after
+      </a>
+      <a href="webtech.html" class="nav-button">
+        <span class="nav-en">WEB TECHNOLOGY</span>
+        <span class="nav-ja">Web技術について</span>
+        ::after
       </a>
     </section>
 
@@ -53,5 +88,87 @@
     <p>&copy; 2026 Group Project</p>
   </footer>
 
+  <script>
+    class TextScramble {
+      constructor(el) {
+        this.el = el;
+        // ランダムに表示させる記号や文字のセット
+        this.chars = '!<>-_\\/[]{}—=+*^?#01________';
+        this.update = this.update.bind(this);
+      }
+
+      setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => (this.resolve = resolve));
+        this.queue = [];
+
+        for (let i = 0; i < length; i++) {
+          const from = oldText[i] || '';
+          const to = newText[i] || '';
+          // 変化が始まるタイミングと終わるタイミングをランダムに設定
+          const start = Math.floor(Math.random() * 100);    //最後の数値が最大フレーム数を表す
+          const end = start + Math.floor(Math.random() * 100);  //最後の数値が最大フレーム数を表す
+          this.queue.push({ from, to, start, end });
+        }
+
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+
+      update() {
+        let output = '';
+        let complete = 0;
+
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+          let { from, to, start, end, char } = this.queue[i];
+
+          if (this.frame >= end) {
+            complete++;
+            output += to;
+          } else if (this.frame >= start) {
+            // 一定確率でランダムな記号を入れ替える
+            if (!char || Math.random() < 0.28) {
+              char = this.randomChar();
+              this.queue[i].char = char;
+            }
+            // 変化途中の文字に薄い色をつけてノイズ感を出す
+            output += `<span style="opacity: 0.5;">${char}</span>`;
+          } else {
+            output += from;
+          }
+        }
+
+        this.el.innerHTML = output;
+
+        if (complete === this.queue.length) {
+          this.resolve();
+        } else {
+          this.frameRequest = requestAnimationFrame(this.update);
+          this.frame++;
+        }
+      }
+
+      randomChar() {
+        return this.chars[Math.floor(Math.random() * this.chars.length)];
+      }
+    }
+
+    // 実行処理
+    const target = document.querySelector('.scramble-text');
+    const fx = new TextScramble(target);
+
+    // ページ読み込み時に実行
+    window.addEventListener('load', () => {
+      fx.setText(target.dataset.text);
+    });
+
+    // マウスを乗せた時にも再実行
+    target.addEventListener('mouseenter', () => {
+      fx.setText(target.dataset.text);
+    });
+  </script>
 </body>
 </html>

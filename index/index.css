@@ -1,0 +1,51 @@
+body.loaded .header::before {
+    backdrop-filter: blur(8px);
+    opacity: 1;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(0px);
+    background: rgba(0, 0, 0, 0.15);
+    filter: url(#liquid-distortion);
+    z-index: -1;
+    opacity: 0;
+    transition: backdrop-filter 1.2s ease 0.3s, opacity 0.8s ease 0.3s;
+    border-radius: 0 0 12px 12px;
+}
+
+.w-container{
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sec-introduction {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 0;
+    box-sizing: border-box;
+}
+
+.intro-first-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+    position: relative;
+    margin-top: 0;
+    box-sizing: border-box;
+}
+
+.produce-title {
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+}
