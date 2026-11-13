@@ -5,46 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">　<!--スマホ対応-->
   <title>Group D ディープフェイク</title>
   <link rel="stylesheet" href="base.css">
+  <!--Zen old mincho-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap" rel="stylesheet">
+  <!--Roboto-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Zen+Old+Mincho&display=swap" rel="stylesheet">
   <style>
     /* bodyへの指定はページ全体に影響するため外すか調整します */
     .scramble-text {
-      font-family: 'Courier New', Consolas, monospace;
-      font-size: 2.5rem;
-      letter-spacing: 0.1em;
+      font-family: "Roboto";
+      margin-right: auto;
+      margin-bottom: 40px;
+      margin-left: auto;
+      font-weight: 300;
+      letter-spacing: 8px;
       cursor: pointer;
       color: #ffffff; /* 必要に応じて指定 */
     }
   </style>
 </head>
 <body class="body">
-
+  <svg width="0" height="0" style="position: absolute;">
+    <filter id="liquid-distortion">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
   <!-- 共通ヘッダー -->
   <header class="l-header">
-    <div class="logo">Group D</div>
+    <div class="logo">DEEP FAKE TECHNOLOGY</div>
   </header>
 
   <!-- トップページ専用のメインコンテンツ -->
   <main class="l-container">
-    <div class="container w-container">
-      ::before
-      <section class="sec-container sec-introduction">
-        <div class="intro-first-view">
-          <p class="produce-title">メディアプロジェクト演習</p>
-          <p class="produce-subtitle">グループD</p>
-        </div>
-
-      </section>
-      <p class="produce-title">
-        高草 千暁 / 大井 研伸 / 高御堂 彩音 / 髙橋 謙介
-      </p>
-
-    </div>
     <!-- トップのタイトルと概要 -->
     <section class="c-top">
       <h1 class="logo-large">
         <div class="scramble-text" data-text="DEEP FAKE">DEEP FAKE</div>
       </h1>
-      <h1 class="top-title">テーマの全体タイトル</h1>
       <p class="top-text">ここにウェブページ全体の概要や、目次としての案内文（「概要/目次担当」が作成する文章）を記載します。</p>
     </section>
 
@@ -54,38 +55,44 @@
       <a href="history.html" class="nav-button">
         <span class="nav-en">HISTORY</span>
         <span class="nav-ja">歴史について</span>
-        ::after
       </a>
       
       <a href="measures.html" class="nav-button">
         <span class="nav-en">MEASURES</span>
         <span class="nav-ja">対策について</span>
-        ::after
       </a>
 
       <a href="deeplearning.html" class="nav-button">
         <span class="nav-en">DEEP LEARNING</span>
         <span class="nav-ja">深層学習について</span>
-        ::after
       </a>
 
       <a href="media.html" class="nav-button">
         <span class="nav-en">MEDIA TECH</span>
         <span class="nav-ja">画像音声技術について</span>
-        ::after
       </a>
+
       <a href="webtech.html" class="nav-button">
         <span class="nav-en">WEB TECHNOLOGY</span>
-        <span class="nav-ja">Web技術について</span>
-        ::after
+        <span class="nav-ja">使用したWeb技術について</span>
       </a>
     </section>
-
+    <div class="container w-container">
+      <section class="sec-container sec-introduction">
+        <div class="intro-first-view">
+          <p class="produce-title">メディアプロジェクト演習</p>
+          <p class="produce-subtitle">グループD</p>
+        </div>
+      </section>
+      <p class="produce-title">
+        高草 千暁 / 大井 研伸 / 高御堂 彩音 / 髙橋 謙介
+      </p>
+    </div>
   </main>
 
   <!-- 共通フッター -->
   <footer class="l-footer">
-    <p>&copy; 2026 Group Project</p>
+    <p>&copy; 2026 Group-D Project</p>
   </footer>
 
   <script>
@@ -168,6 +175,10 @@
     // マウスを乗せた時にも再実行
     target.addEventListener('mouseenter', () => {
       fx.setText(target.dataset.text);
+    });
+
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
     });
   </script>
 </body>
