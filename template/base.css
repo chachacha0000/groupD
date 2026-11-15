@@ -59,6 +59,7 @@ p {
 /* 4. 共通のセクション・見出しデザイン */
 .c-section {
   margin-bottom: 80px; /* セクション間の余白を広く取るとモダンになります */
+  background-color: black;
 }
 
 .c-section-title {
@@ -90,6 +91,8 @@ p {
   max-width: 800px;
   margin: 0 auto;
 }
+
+
 
 /* スタイリッシュなボタンのデザイン */
 .nav-button {
